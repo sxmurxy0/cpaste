@@ -1,0 +1,4 @@
+{
+    "SQLALCHEMY_DATABASE_URI": "postgresql://cpaste:supersecret@localhost:5432/cpaste_db",
+    "SQLALCHEMY_TRACK_MODIFICATIONS": false
+}
