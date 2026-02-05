@@ -49,6 +49,7 @@ def view_snippet(uuid):
         snippet_title=snippet.title,
         snippet_content=snippet.content,
         creation_date=snippet.short_creation_date(),
+        views=snippet.views_count,
         show_delete_form=False
     )
 
@@ -69,6 +70,7 @@ def delete_snippet(duuid):
         snippet_title=snippet.title,
         snippet_content=snippet.content,
         creation_date=snippet.short_creation_date(),
+        views=snippet.views_count,
         show_delete_form=True
     )
 

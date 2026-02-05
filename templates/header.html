@@ -1,8 +1,13 @@
 <style>
     :root {
         --header-height: 60px;
-        --accent: #2563eb;
+        --accent: #000000;
+        --accent-hover: #333333;
+        --danger: #dc2626;
+        --muted: #6b7280;
+        --muted-hover: #4b5563;
         --border: #e5e7eb;
+        --success: #10b981;
     }
     
     * {
@@ -50,6 +55,62 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-primary {
+        background: var(--accent);
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        background: var(--accent-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .btn-secondary {
+        background: white;
+        color: var(--muted);
+        border: 1px solid var(--border);
+    }
+    
+    .btn-secondary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .page-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #1e293b;
+    }
+    
+    .page-subtitle {
+        color: var(--muted);
+        margin-bottom: 24px;
+        font-size: 0.96rem;
     }
 </style>
 

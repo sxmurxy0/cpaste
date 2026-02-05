@@ -5,78 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>cpaste — Сниппет создан</title>
     <style>
-        :root {
-            --header-height: 60px;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --muted: #6b7280;
-            --muted-hover: #4b5563;
-            --border: #e5e7eb;
-            --success: #10b981;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
-            background: #f8fafc;
-            color: #1e293b;
-        }
-        
-        main {
-            margin-top: var(--header-height);
-            padding: 40px 20px;
-            min-height: calc(100vh - var(--header-height));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
         .result-card {
             background: white;
             border-radius: 8px;
             border: 1px solid var(--border);
-            padding: 40px;
+            padding: 32px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-        
-        .success-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--success);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 28px;
-            color: white;
-            font-weight: bold;
-        }
-        
-        .result-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #1e293b;
-        }
-        
-        .result-subtitle {
-            color: var(--muted);
-            margin-bottom: 32px;
-            font-size: 1rem;
-            line-height: 1.5;
         }
         
         .links-container {
@@ -148,52 +82,8 @@
             border-top: 1px solid var(--border);
         }
         
-        .btn {
+        .action-buttons .btn {
             padding: 12px 24px;
-            border-radius: 6px;
-            font-family: inherit;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            border: none;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-        
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
-        
-        .btn-secondary {
-            background: white;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-        }
-        
-        .btn-danger {
-            background: #ef4444;
-            color: white;
-        }
-        
-        .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .btn-primary:hover {
-            background: var(--accent-hover);
-        }
-        
-        .btn-secondary:hover {
-            background: #f0f9ff;
-        }
-        
-        .btn-danger:hover {
-            background: #dc2626;
         }
         
         .note {
@@ -224,10 +114,8 @@
     <main>
         <div class="container">
             <div class="result-card">
-                <div class="success-icon">✓</div>
-                
-                <h1 class="result-title">Сниппет успешно создан!</h1>
-                <p class="result-subtitle">
+                <h1 class="page-title">Сниппет успешно создан!</h1>
+                <p class="page-subtitle">
                     Ваш сниппет сохранен. Используйте ссылки ниже для просмотра или удаления.
                 </p>
                 
@@ -257,7 +145,7 @@
                     <a href="{{ view_url }}" class="btn btn-primary" target="_blank">
                         Перейти к сниппету
                     </a>
-                    <a href="/snippets/create" class="btn btn-secondary">
+                    <a href="/create" class="btn btn-secondary">
                         Создать еще один
                     </a>
                 </div>

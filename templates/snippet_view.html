@@ -4,42 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>cpaste — {{ snippet_title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <style>
-        :root {
-            --header-height: 60px;
-            --accent: #2563eb;
-            --danger: #dc2626;
-            --muted: #6b7280;
-            --border: #e5e7eb;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
-            background: #f8fafc;
-            color: #1e293b;
-        }
-        
-        main {
-            margin-top: var(--header-height);
-            padding: 20px;
-            min-height: calc(100vh - var(--header-height));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
         .snippet-card {
             background: white;
             border-radius: 8px;
@@ -48,36 +14,32 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
-        .snippet-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #1e293b;
-        }
-        
-        .snippet-meta {
-            color: var(--muted);
-            margin-bottom: 24px;
-            font-size: 0.95rem;
-        }
-        
         .snippet-content {
             margin-top: 20px;
         }
-        
-        .form-textarea {
+
+        .snippet-content pre {
             width: 100%;
-            padding: 12px;
             border: 1px solid var(--border);
             border-radius: 6px;
             font-family: 'Courier New', Courier, monospace;
             font-size: 0.95rem;
             background: white;
             color: #1e293b;
-            min-height: 300px;
             resize: vertical;
             line-height: 1.5;
             white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
+            margin: 0;
+            height: 440px;
+        }
+
+        .snippet-content code {
+            background: none;
+            padding: 0;
+            color: inherit;
+            font-size: inherit;
         }
         
         .delete-form {
@@ -86,24 +48,8 @@
             border-top: 1px solid var(--border);
         }
         
-        .btn {
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-family: inherit;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .btn-danger {
-            background: var(--danger);
-            color: white;
+        .delete-form .btn-danger {
             width: 100%;
-        }
-        
-        .btn-danger:hover {
-            background: #b91c1c;
         }
     </style>
 </head>
@@ -113,19 +59,19 @@
     <main>
         <div class="container">
             <div class="snippet-card">
-                <h1 class="snippet-title">{{ snippet_title }}</h1>
-                <div class="snippet-meta">
-                    Создан {{ creation_date }}
+                <h1 class="page-title">{{ snippet_title }}</h1>
+                <div class="page-subtitle">
+                    Создан {{ creation_date }}. Просмотров {{ views }}.
                 </div>
                 
                 <div class="snippet-content">
-                    <textarea class="form-textarea" readonly>{{ snippet_content }}</textarea>
+                    <pre><code class="hljs">{{ snippet_content }}</code></pre>
                 </div>
                 
                 {% if show_delete_form %}
                 <div class="delete-form">
                     <form method="POST">
-                        <button type="submit" class="btn btn-danger">
+                        <button type="submit" class="btn btn-primary">
                             Удалить сниппет
                         </button>
                     </form>
@@ -134,5 +80,10 @@
             </div>
         </div>
     </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
 </body>
 </html>

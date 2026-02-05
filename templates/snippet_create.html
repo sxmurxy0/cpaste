@@ -5,31 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>cpaste — Создать сниппет</title>
     <style>
-        .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
         .form-card {
             background: white;
             border-radius: 8px;
             border: 1px solid var(--border);
             padding: 32px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        
-        .form-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #1e293b;
-        }
-        
-        .form-subtitle {
-            color: var(--muted);
-            margin-bottom: 24px;
-            font-size: 0.95rem;
         }
         
         .form-group {
@@ -45,8 +26,7 @@
         }
         
         .form-input,
-        .form-select,
-        .form-textarea {
+        .form-select {
             width: 100%;
             padding: 10px 12px;
             border: 1px solid var(--border);
@@ -59,23 +39,40 @@
         }
         
         .form-input:focus,
-        .form-select:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            background: white;
+            color: #1e293b;
+            resize: vertical;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            transition: border-color 0.2s;
+            min-height: 200px;
+        }
+    
         .form-textarea:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
         }
         
-        .form-input::placeholder,
         .form-textarea::placeholder {
             color: #94a3b8;
-        }
-        
-        .form-textarea {
-            min-height: 200px;
-            resize: vertical;
-            font-family: 'Courier New', Courier, monospace;
-            line-height: 1.5;
         }
         
         .form-actions {
@@ -85,33 +82,6 @@
             padding-top: 20px;
             border-top: 1px solid var(--border);
         }
-        
-        .btn {
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-family: inherit;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-        }
-        
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
-        
-        .btn-secondary {
-            background: white;
-            color: var(--muted);
-            border: 1px solid var(--border);
-        }
-        
-        .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
     </style>
 </head>
 <body>
@@ -120,8 +90,10 @@
     <main>
         <div class="container">
             <div class="form-card">
-                <h1 class="form-title">Создать новый сниппет</h1>
-                <p class="form-subtitle">Вставьте код или текст и выберите срок хранения</p>
+                <h1 class="page-title">Создать новый сниппет</h1>
+                <p class="page-subtitle">
+                    Задайте название, вставьте код и выберите срок хранения.
+                </p>
                 
                 <form method="post">
                     <div class="form-group">
