@@ -1,0 +1,60 @@
+<style>
+    :root {
+        --header-height: 60px;
+        --accent: #2563eb;
+        --border: #e5e7eb;
+    }
+    
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
+        background: #f8fafc;
+        color: #1e293b;
+    }
+    
+    .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--header-height);
+        background: white;
+        border-bottom: 1px solid var(--border);
+        z-index: 100;
+    }
+    
+    .header-content {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .logo {
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 600;
+        font-size: 1.8rem;
+        color: var(--accent);
+        text-decoration: none;
+    }
+    
+    main {
+        margin-top: var(--header-height);
+        padding: 20px;
+        min-height: calc(100vh - var(--header-height));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<header class="site-header">
+    <div class="header-content">
+        <a href="/" class="logo">cpaste</a>
+    </div>
+</header>

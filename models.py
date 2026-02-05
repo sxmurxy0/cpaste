@@ -9,8 +9,8 @@ import enum, datetime, uuid as puuid
 database = SQLAlchemy()
 
 class DeleteStrategy(enum.Enum):
-    AFTER_FIRST_VEIW = 'AFTER_FIRST_VEIW'
     NEVER = 'NEVER'
+    AFTER_FIRST_VEIW = 'AFTER_FIRST_VEIW'
     AFTER_DAY = 'AFTER_DAY'
     AFTER_WEEK = 'AFTER_WEEK'
     AFTER_MONTH = 'AFTER_MONTH'
@@ -36,3 +36,6 @@ class Snippet(database.Model):
     
     def __repr__(self):
         return f'<Snippet {self.uuid}>'
+
+    def short_creation_date(self):
+        return self.created_at.strftime('%Y-%m-%d %H:%M')
