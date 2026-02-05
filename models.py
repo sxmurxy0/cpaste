@@ -15,6 +15,13 @@ class DeleteStrategy(enum.Enum):
     AFTER_WEEK = 'AFTER_WEEK'
     AFTER_MONTH = 'AFTER_MONTH'
 
+    def get_strategy_by_name(name):
+        for strategy in DeleteStrategy:
+            if strategy.name == name:
+                return strategy
+        
+        return None
+
 DeleteStrategyType = EnumType(DeleteStrategy, name='delete_strategy')
 
 class Snippet(database.Model):
