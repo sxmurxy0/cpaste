@@ -10,7 +10,6 @@ database = SQLAlchemy()
 
 class DeleteStrategy(enum.Enum):
     NEVER = 'NEVER'
-    AFTER_FIRST_VEIW = 'AFTER_FIRST_VEIW'
     AFTER_DAY = 'AFTER_DAY'
     AFTER_WEEK = 'AFTER_WEEK'
     AFTER_MONTH = 'AFTER_MONTH'
