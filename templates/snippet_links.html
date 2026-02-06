@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>cpaste — Сниппет создан</title>
+    {% include 'common.template' %}
+    
     <style>
-        .result-card {
-            background: white;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            padding: 32px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        
         .links-container {
             display: flex;
             flex-direction: column;
@@ -73,19 +64,6 @@
             background: var(--accent-hover);
         }
         
-        .action-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border);
-        }
-        
-        .action-buttons .btn {
-            padding: 12px 24px;
-        }
-        
         .note {
             margin-top: 24px;
             padding: 16px;
@@ -113,47 +91,45 @@
     
     <main>
         <div class="container">
-            <div class="result-card">
-                <h1 class="page-title">Сниппет успешно создан!</h1>
-                <p class="page-subtitle">
-                    Ваш сниппет сохранен. Используйте ссылки ниже для просмотра или удаления.
-                </p>
-                
-                <div class="links-container">
-                    <div class="link-box">
-                        <span class="link-label">Ссылка для просмотра сниппета:</span>
-                        <div class="link-url">
-                            <input type="text" class="url-input" value="{{ view_url }}" readonly id="view-link">
-                            <button class="copy-btn" onclick="copyToClipboard('view-link')">
-                                Копировать
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="link-box delete-link-box">
-                        <span class="link-label delete-link-label">Ссылка для удаления сниппета:</span>
-                        <div class="link-url">
-                            <input type="text" class="url-input" value="{{ delete_url }}" readonly id="delete-link">
-                            <button class="copy-btn" onclick="copyToClipboard('delete-link')">
-                                Копировать
-                            </button>
-                        </div>
+            <h1 class="page-title">Сниппет успешно создан!</h1>
+            <p class="page-subtitle">
+                Ваш сниппет сохранен. Используйте ссылки ниже для просмотра или удаления.
+            </p>
+            
+            <div class="links-container">
+                <div class="link-box">
+                    <span class="link-label">Ссылка для просмотра сниппета:</span>
+                    <div class="link-url">
+                        <input type="text" class="url-input" value="{{ view_url }}" readonly id="view-link">
+                        <button class="copy-btn" onclick="copyToClipboard('view-link')">
+                            Копировать
+                        </button>
                     </div>
                 </div>
                 
-                <div class="action-buttons">
-                    <a href="{{ view_url }}" class="btn btn-primary" target="_blank">
-                        Перейти к сниппету
-                    </a>
-                    <a href="/create" class="btn btn-secondary">
-                        Создать еще один
-                    </a>
+                <div class="link-box delete-link-box">
+                    <span class="link-label delete-link-label">Ссылка для удаления сниппета:</span>
+                    <div class="link-url">
+                        <input type="text" class="url-input" value="{{ delete_url }}" readonly id="delete-link">
+                        <button class="copy-btn" onclick="copyToClipboard('delete-link')">
+                            Копировать
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="note">
-                    <strong>Важно:</strong> Сохраните эти ссылки! Ссылка для удаления показывается только один раз.
-                    Без нее вы не сможете удалить сниппет досрочно.
-                </div>
+            </div>
+            
+            <div class="actions">
+                <a href="{{ view_url }}" class="btn btn-primary" target="_blank">
+                    Перейти к сниппету
+                </a>
+                <a href="/create" class="btn btn-secondary">
+                    Создать еще один
+                </a>
+            </div>
+            
+            <div class="note">
+                <strong>Важно:</strong> Сохраните эти ссылки! Ссылка для удаления показывается только один раз.
+                Без нее вы не сможете удалить сниппет досрочно.
             </div>
         </div>
     </main>

@@ -29,14 +29,18 @@ def create_snippet():
         database.session.commit()
 
         return render_template(
-            'snippet_links.html', 
+            'snippet_links.html',
+            page_title='Сниппет создан',
             snippet_title=snippet.title,
             creation_date=snippet.created_at,
             view_url=f'{request.url_root}{snippet.uuid}',
             delete_url=f'{request.url_root}d/{snippet.duuid}'
         )
     
-    return render_template('snippet_create.html')
+    return render_template(
+        'snippet_create.html',
+        page_title='Создание сниппета'
+    )
 
 @app.get('/<uuid>')
 def view_snippet(uuid):
@@ -46,6 +50,7 @@ def view_snippet(uuid):
     
     return render_template(
         'snippet_view.html',
+        page_title=snippet.title,
         snippet_title=snippet.title,
         snippet_content=snippet.content,
         creation_date=snippet.short_creation_date(),
@@ -67,6 +72,7 @@ def delete_snippet(duuid):
     
     return render_template(
         'snippet_view.html',
+        page_title=snippet.title,
         snippet_title=snippet.title,
         snippet_content=snippet.content,
         creation_date=snippet.short_creation_date(),

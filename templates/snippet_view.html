@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>cpaste — {{ snippet_title }}</title>
+    {% include 'common.template' %}
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <style>
-        .snippet-card {
-            background: white;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            padding: 32px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        
         .snippet-content {
             margin-top: 20px;
         }
@@ -32,7 +23,7 @@
             word-wrap: break-word;
             overflow-x: auto;
             margin: 0;
-            height: 440px;
+            min-height: 420px;
         }
 
         .snippet-content code {
@@ -41,16 +32,6 @@
             color: inherit;
             font-size: inherit;
         }
-        
-        .delete-form {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border);
-        }
-        
-        .delete-form .btn-danger {
-            width: 100%;
-        }
     </style>
 </head>
 <body>
@@ -58,26 +39,24 @@
     
     <main>
         <div class="container">
-            <div class="snippet-card">
-                <h1 class="page-title">{{ snippet_title }}</h1>
-                <div class="page-subtitle">
-                    Создан {{ creation_date }}. Просмотров {{ views }}.
-                </div>
-                
-                <div class="snippet-content">
-                    <pre><code class="hljs">{{ snippet_content }}</code></pre>
-                </div>
-                
-                {% if show_delete_form %}
-                <div class="delete-form">
-                    <form method="POST">
-                        <button type="submit" class="btn btn-primary">
-                            Удалить сниппет
-                        </button>
-                    </form>
-                </div>
-                {% endif %}
+            <h1 class="title">{{ snippet_title }}</h1>
+            <div class="subtitle">
+                Создан {{ creation_date }}. Просмотров {{ views }}.
             </div>
+            
+            <div class="snippet-content">
+                <pre><code class="hljs">{{ snippet_content }}</code></pre>
+            </div>
+            
+            {% if show_delete_form %}
+            <div class="actions">
+                <form method="POST">
+                    <button type="submit" class="btn btn-primary">
+                        Удалить сниппет
+                    </button>
+                </form>
+            </div>
+            {% endif %}
         </div>
     </main>
 
