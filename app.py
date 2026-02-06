@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, redirect, abort
+from werkzeug.exceptions import HTTPException
 import json
 from models import database, Snippet, DeleteStrategy
 
@@ -7,6 +8,15 @@ app = Flask(__name__)
 app.config.from_file('config.json', json.load)
 
 database.init_app(app)
+
+@app.errorhandler(HTTPException)
+def handle_http_exception(ex):
+    return render_template(
+        'exception.html',
+        page_title='Ошибка',
+        code=ex.code,
+        description=ex.description
+    )
 
 @app.get('/')
 def index():
@@ -22,7 +32,7 @@ def create_snippet():
         dstrategy = DeleteStrategy.get_strategy_by_name(dstrategy_name)
         
         if dstrategy is None:
-            abort(400, description='Invalid delete strategy!')
+            abort(400, description='Некорректное значение поля <dstrategy>!')
 
         snippet = Snippet(title, content, dstrategy)
         database.session.add(snippet)
@@ -46,7 +56,7 @@ def create_snippet():
 def view_snippet(uuid):
     snippet = database.session.query(Snippet).where(Snippet.uuid == uuid).scalar()
     if snippet is None:
-        abort(404, description='Snippet not found!')
+        abort(404, description='Сниппет не найден!')
     
     return render_template(
         'snippet_view.html',
@@ -62,7 +72,7 @@ def view_snippet(uuid):
 def delete_snippet(duuid):
     snippet = database.session.query(Snippet).where(Snippet.duuid == duuid).scalar()
     if snippet is None:
-        abort(404, description='Snippet not found!')
+        abort(404, description='Сниппет не найден!')
 
     if request.method == 'POST': 
         database.session.delete(snippet)
