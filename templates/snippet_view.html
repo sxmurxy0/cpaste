@@ -13,7 +13,6 @@
             width: 100%;
             border: 1px solid var(--border);
             border-radius: 6px;
-            font-family: 'Courier New', Courier, monospace;
             font-size: 0.95rem;
             background: white;
             color: #1e293b;
@@ -24,6 +23,7 @@
             overflow-x: auto;
             margin: 0;
             min-height: 420px;
+            height: 420px;
         }
 
         .snippet-content code {
@@ -45,24 +45,43 @@
             </div>
             
             <div class="snippet-content">
-                <pre><code class="hljs">{{ snippet_content }}</code></pre>
+                <pre><code class="hljs" id="snippet-code">{{ snippet_content }}</code></pre>
             </div>
             
-            {% if show_delete_form %}
             <div class="actions">
+                {% if show_delete_form %}
                 <form method="POST">
                     <button type="submit" class="btn btn-primary">
                         Удалить сниппет
                     </button>
                 </form>
+                <button type="button" class="btn btn-secondary" onclick="copySnippetToClipboard()">
+                    Копировать
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-primary" onclick="copySnippetToClipboard()">
+                    Копировать
+                </button>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>
         hljs.highlightAll();
+        
+        function copySnippetToClipboard() {
+            const snippetCode = document.getElementById('snippet-code');
+            const text = snippetCode.textContent;
+            
+            navigator.clipboard.writeText(text);
+
+            const button = event.target;
+            button.textContent = 'Скопировано!';
+            button.style.background = '#10b981';
+            button.style.color = 'white';
+        }
     </script>
 </body>
 </html>

@@ -8,7 +8,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            margin-top: 32px;
+            margin-top: 20px;
         }
         
         .link-box {
@@ -91,8 +91,8 @@
     
     <main>
         <div class="container">
-            <h1 class="page-title">Сниппет успешно создан!</h1>
-            <p class="page-subtitle">
+            <h1 class="title">Сниппет успешно создан!</h1>
+            <p class="subtitle">
                 Ваш сниппет сохранен. Используйте ссылки ниже для просмотра или удаления.
             </p>
             
@@ -101,7 +101,7 @@
                     <span class="link-label">Ссылка для просмотра сниппета:</span>
                     <div class="link-url">
                         <input type="text" class="url-input" value="{{ view_url }}" readonly id="view-link">
-                        <button class="copy-btn" onclick="copyToClipboard('view-link')">
+                        <button class="copy-btn" onclick="copyLinkToClipboard('view-link')">
                             Копировать
                         </button>
                     </div>
@@ -111,7 +111,7 @@
                     <span class="link-label delete-link-label">Ссылка для удаления сниппета:</span>
                     <div class="link-url">
                         <input type="text" class="url-input" value="{{ delete_url }}" readonly id="delete-link">
-                        <button class="copy-btn" onclick="copyToClipboard('delete-link')">
+                        <button class="copy-btn" onclick="copyLinkToClipboard('delete-link')">
                             Копировать
                         </button>
                     </div>
@@ -135,19 +135,15 @@
     </main>
     
     <script>
-        function copyToClipboard(inputId) {
+        function copyLinkToClipboard(inputId) {
             const input = document.getElementById(inputId);
-            input.select();
-            input.setSelectionRange(0, 99999);
+            const text = input.value;
             
-            const successful = document.execCommand('copy');
-                const btn = event.target;
-                const originalText = btn.textContent;
-                
-                if (successful) {
-                    btn.textContent = 'Скопировано!';
-                    btn.style.background = '#10b981';
-                }
+            navigator.clipboard.writeText(text);
+
+            const button = event.target;
+            button.textContent = 'Скопировано!';
+            button.style.background = '#10b981';
         }
     </script>
 </body>
