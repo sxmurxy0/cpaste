@@ -2,12 +2,15 @@ from flask import Flask, request, render_template, redirect, abort
 from werkzeug.exceptions import HTTPException
 import json
 from models import database, Snippet, DeleteStrategy
-
+from scheduler import scheduler
 
 app = Flask(__name__)
 app.config.from_file('config.json', json.load)
 
 database.init_app(app)
+scheduler.init_app(app)
+
+scheduler.start()
 
 @app.errorhandler(HTTPException)
 def handle_http_exception(ex):
