@@ -61,6 +61,9 @@ def view_snippet(uuid):
     if snippet is None:
         abort(404, description='Сниппет не найден!')
     
+    snippet.views_count += 1
+    database.session.commit()
+    
     return render_template(
         'snippet_view.html',
         page_title=snippet.title,
